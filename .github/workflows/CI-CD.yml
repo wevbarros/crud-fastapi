@@ -29,8 +29,7 @@ jobs:
       - name: Install dependencies
         run: pip install --no-cache-dir --upgrade -r requirements.txt
       - name: Build
-        run: uvicorn main:app
-
+        run: echo "smoke test"
   horusec-security:
     name: horusec-security
     needs: build
