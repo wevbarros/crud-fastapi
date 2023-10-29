@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: pip install --no-cache-dir --upgrade -r requirements.txt
       - name: Build
-        run: uvicorn app.main:app
+        run: uvicorn main:app
 
   horusec-security:
     name: horusec-security
@@ -47,6 +47,7 @@ jobs:
   
   push_to_registry:
     name: Push Docker image to Docker Hub
+    needs: horusec-security
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
