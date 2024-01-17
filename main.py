@@ -1,7 +1,11 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+import uvicorn
+import logging
 
 app = FastAPI()
+
+logging.basicConfig(level=logging.INFO)
 
 class Product(BaseModel):
     name: str
@@ -10,6 +14,7 @@ class Product(BaseModel):
 
 @app.get("/")
 async def root():
+    logging.info("Acesso à rota principal.")
     return "CHAAAAMA"
 
 
@@ -54,3 +59,8 @@ products = [
         "stock": 3
     }
 ]
+print(__name__)
+
+if __name__ == '__main__':
+
+    uvicorn.run('main:app', port=8000, host='localhost', reload=True)
