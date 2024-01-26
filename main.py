@@ -14,31 +14,36 @@ class Product(BaseModel):
 
 @app.get("/")
 async def root():
-    logging.info("Acesso à rota principal.")
+    logging.info("Acesso à rota root.")
     return "CHAAAAMA"
 
 
 @app.get("/products")
 async def get_products():
+    logging.info("Acesso à rota products.")
     return products
 
 @app.get("/products/{product_id}")
 async def get_product(product_id: int):
+    logging.info("Acesso à rota products/{product_id}.")
     product = products[product_id-1]
     return product
 
 @app.post("/products")
 async def create_product(product: Product):
+    logging.info("Acesso à rota products.")
     products.append(product.dict())
     return products[-1]
 
 @app.put("/products/{product_id}")
 async def update_product(product_id: int, product: Product):
+    logging.info("Acesso à rota products/{product_id}.")
     products[product_id-1] = product.dict()
     return products[product_id-1]
 
 @app.delete("/products/{product_id}")
 async def delete_product(product_id: int):
+    logging.info("Acesso à rota products/{product_id}.")
     products.pop(product_id-1)
     return {"message": "Product deleted!"}
 
